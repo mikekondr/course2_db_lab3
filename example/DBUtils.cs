@@ -6,7 +6,7 @@ namespace example
     {
         public static MySqlConnection GetDBConnection()
         {
-            string host = "localhost";
+            string host = "10.211.55.2";
             int port = 3306;
             string database = "world";
             string username = "root";
