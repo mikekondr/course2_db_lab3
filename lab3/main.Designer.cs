@@ -130,6 +130,7 @@
             dgvTickets.ReadOnly = true;
             dgvTickets.Size = new Size(786, 392);
             dgvTickets.TabIndex = 1;
+            dgvTickets.MouseDoubleClick += dgvTickets_MouseDoubleClick;
             // 
             // mTickets
             // 
@@ -145,12 +146,14 @@
             addTicketMenuItem.Name = "addTicketMenuItem";
             addTicketMenuItem.Size = new Size(58, 20);
             addTicketMenuItem.Text = "Додати";
+            addTicketMenuItem.Click += addTicketMenuItem_Click;
             // 
             // removeTicketMenuItem
             // 
             removeTicketMenuItem.Name = "removeTicketMenuItem";
             removeTicketMenuItem.Size = new Size(71, 20);
             removeTicketMenuItem.Text = "Видалити";
+            removeTicketMenuItem.Click += removeTicketMenuItem_Click;
             // 
             // Main
             // 

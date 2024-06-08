@@ -1,6 +1,5 @@
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Runtime.CompilerServices;
 
 namespace lab3;
 
@@ -115,6 +114,51 @@ public partial class Main : Form
     {
         int flight_num = (int)dgvShedule.CurrentCell.OwningRow.Cells[0].Value;
         Form frm = new flight(conn, flight_num);
+        if (frm.ShowDialog() == DialogResult.OK)
+            RefreshTables();
+    }
+
+    private void addTicketMenuItem_Click(object sender, EventArgs e)
+    {
+        Form frm = new Ticket(conn);
+        if (frm.ShowDialog() == DialogResult.OK)
+            RefreshTables();
+    }
+
+    private void removeTicketMenuItem_Click(object sender, EventArgs e)
+    {
+        int ticket_id = 0;
+
+        List<DataGridViewRow> rows = new List<DataGridViewRow>();
+
+        if (dgvTickets.SelectedRows.Count > 0)
+            foreach (DataGridViewRow row in dgvTickets.SelectedRows)
+                rows.Add(row);
+        else if (dgvTickets.SelectedCells.Count > 0)
+            foreach (DataGridViewCell cell in dgvTickets.SelectedCells)
+                if (!rows.Contains(cell.OwningRow))
+                    rows.Add(cell.OwningRow);
+
+        if (rows.Count() == 0)
+            return;
+
+        DialogResult answer = DialogResult.Yes;
+        answer = MessageBox.Show($"Обрані квитки ({rows.Count()} шт) буде остаточно видалено.\n\nПродовжити?",
+            "УВАГА!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+        if (answer == DialogResult.Cancel)
+            return;
+
+        foreach (DataGridViewRow row in rows)
+            DBUtils.RemoveTicket(conn, (int)row.Cells[0].Value);
+
+        RefreshTables();
+    }
+
+    private void dgvTickets_MouseDoubleClick(object sender, MouseEventArgs e)
+    {
+        int ticket_id = (int)dgvTickets.CurrentCell.OwningRow.Cells[0].Value;
+        Form frm = new Ticket(conn, ticket_id);
         if (frm.ShowDialog() == DialogResult.OK)
             RefreshTables();
     }
