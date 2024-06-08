@@ -245,6 +245,7 @@ internal class DBUtils
                 VALUES (@flight_num, @order_date, @seat_type, @count, @discount_type, @flight_date)", conn);
         }
 
+        cmd.Parameters.AddWithValue("order_id", ticket.order_id);
         cmd.Parameters.AddWithValue("flight_num", ticket.flight_num);
         cmd.Parameters.AddWithValue("order_date", ticket.order_date.Date);
         cmd.Parameters.AddWithValue("seat_type", ticket.seat_type);

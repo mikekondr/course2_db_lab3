@@ -101,6 +101,7 @@
             // 
             // btnOk
             // 
+            btnOk.DialogResult = DialogResult.OK;
             btnOk.Location = new Point(110, 345);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(75, 23);
@@ -111,6 +112,7 @@
             // 
             // btnCancel
             // 
+            btnCancel.DialogResult = DialogResult.Cancel;
             btnCancel.Location = new Point(214, 345);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 23);

@@ -128,6 +128,12 @@ public partial class Ticket : Form
 
     private void btnOk_Click(object sender, EventArgs e)
     {
+        ticket_data.count = Convert.ToInt32(numCount.Value);
+        ticket_data.flight_date = dateFlight.Value;
+        ticket_data.flight_num = Convert.ToInt32(comboFlight.SelectedValue);
+        ticket_data.discount_type = Convert.ToInt32(comboDiscount.SelectedValue);
+        ticket_data.order_date = dateTicket.Value;
+        ticket_data.seat_type = Convert.ToString(comboSeatType.SelectedValue);
         DBUtils.SaveTicket(conn, ticket_data);
     }
 }
